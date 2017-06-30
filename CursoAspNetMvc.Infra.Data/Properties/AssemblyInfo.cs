@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CursoAspNetCore")]
+[assembly: AssemblyProduct("CursoAspNetMvc.Infra.Data")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1a0825ce-520a-42c8-b520-7c91a68b0b2e")]
+[assembly: Guid("b8a42681-230b-4905-bb4a-39eaa772f8ef")]

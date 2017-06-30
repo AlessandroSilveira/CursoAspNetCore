@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>1a0825ce-520a-42c8-b520-7c91a68b0b2e</ProjectGuid>
-    <RootNamespace>CursoAspNetCore</RootNamespace>
+    <ProjectGuid>b8a42681-230b-4905-bb4a-39eaa772f8ef</ProjectGuid>
+    <RootNamespace>CursoAspNetMvc.Infra.Data</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
