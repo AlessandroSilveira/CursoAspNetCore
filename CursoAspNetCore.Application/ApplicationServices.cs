@@ -1,4 +1,6 @@
-﻿namespace CursoAspNetCore.Application
+﻿using CursoAspNetCore.Domain.Interfaces.Repository;
+
+namespace CursoAspNetCore.Application
 {
     public class ApplicationService
     {

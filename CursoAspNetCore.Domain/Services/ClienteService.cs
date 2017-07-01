@@ -1,12 +1,11 @@
-﻿using CursoAspNetCore.Domain.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using CursoAspNetCore.Domain.Entities;
 using CursoAspNetCore.Domain.Interfaces.Repository;
 
 namespace CursoAspNetCore.Domain.Services
 {
-    public class ClienteService : IClienteService
+	public class ClienteService : IClienteService
     {
         private readonly IClienteRepository _clienteRepository;
 

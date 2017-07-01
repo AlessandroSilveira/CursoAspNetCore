@@ -1,5 +1,6 @@
 ﻿using System;
 using CursoAspNetMvc.Infra.Data.Context;
+using CursoAspNetCore.Domain.Interfaces.Repository;
 
 namespace CursoAspNetMvc.Infra.Data.UoW
 {

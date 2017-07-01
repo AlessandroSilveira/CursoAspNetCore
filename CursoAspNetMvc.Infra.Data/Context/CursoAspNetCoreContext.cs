@@ -1,36 +1,40 @@
 ﻿using CursoAspNetCore.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace CursoAspNetMvc.Infra.Data.Context
 {
     public class CursoAspNetCoreContext : DbContext
     {
-        public CursoAspNetCoreContext()
-            : base("DefaultConnection")
+
+		public IConfigurationRoot Configurtion { get; set; }
+
+        public CursoAspNetCoreContext(DbContextOptions<CursoAspNetCoreContext> option)
+            : base(option)
         {
+			Database.EnsureCreated();
         }
 
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Endereco> Endereco { get; set; }
 
+		protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
+		{
+			if (!optionBuilder.IsConfigured)
+				optionBuilder.UseSqlServer(RetornaUrlConnection());
+		}
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+		public string RetornaUrlConnection()
+		{
+			var builder = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory());
 
-            modelBuilder.Properties()
-                .Where(p => p.Name == p.ReflectedType.Name + "Id")
-                .Configure(p => p.IsKey().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity));
-            modelBuilder.Properties<string>().Configure(p => p.HasColumnType("varchar"));
+			Configurtion = builder.Build();
 
-            modelBuilder.Configurations.Add(new ClienteConfiguration());
-            modelBuilder.Configurations.Add(new EnderecoConfiguration());
-            
+			string connection = Configurtion.GetConnectionString("DefaultConnection");
 
-            base.OnModelCreating(modelBuilder);
-        }
-
-
+			return connection;
+		}
     }
 }

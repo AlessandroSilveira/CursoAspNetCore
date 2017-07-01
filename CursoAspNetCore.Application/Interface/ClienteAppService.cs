@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using CursoAspNetCore.Application.Interface.Repository;
+using CursoAspNetCore.Domain.Interfaces.Repository;
+using CursoAspNetCore.Domain.Services;
+using CursoAspNetCore.Application.ViewModel;
+using CursoAspNetCore.Domain.Entities;
 
 namespace CursoAspNetCore.Application.Interface
 {
-    public class ClienteAppService : ApplicationService, IClienteAppService    {
+    public class ClienteAppService : ApplicationService, IClienteAppService
+	{
 
         private readonly IClienteService _clienteService;
 
@@ -46,8 +51,6 @@ namespace CursoAspNetCore.Application.Interface
             _clienteService.Remove(id);
             Commit();
         }
-
-
 
         public void Dispose()
         {
