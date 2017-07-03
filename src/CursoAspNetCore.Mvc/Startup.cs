@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CursoAspNetCore.Application.Interface;
+using CursoAspNetCore.Application.Interface.Repository;
+using CursoAspNetCore.Domain.Interfaces.Repository;
+using CursoAspNetCore.Domain.Services;
+using CursoAspNetCore.Infra.Data.Repository;
+using CursoAspNetMvc.Infra.Data.Repository;
+using CursoAspNetMvc.Infra.Data.UoW;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +25,20 @@ namespace CursoAspNetCore.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            
+             //App
+            services.AddSingleton<IClienteAppService, ClienteAppService>();
+            services.AddSingleton<IEnderecoAppService, EnderecoAppService>();     
+
+            //Domain           
+            services.AddSingleton<IClienteService, ClienteService>();
+            services.AddSingleton<IEnderecoService, EnderecoService>();
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            
+            //Infra Dados
+            services.AddSingleton(typeof(IRepository<>), typeof(RepositoryBase<>));
+            services.AddSingleton<IClienteRepository, ClienteRepository>();
+            services.AddSingleton<IEnderecoRepository, EnderecoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

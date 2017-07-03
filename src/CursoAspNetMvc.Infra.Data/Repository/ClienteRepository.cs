@@ -6,9 +6,9 @@ using CursoAspNetMvc.Infra.Data.Context;
 
 namespace CursoAspNetMvc.Infra.Data.Repository
 {
-    public class ClienteRepositoryBase : RepositoryBase<Cliente>, IClienteRepository
+    public class ClienteRepository : RepositoryBase<Cliente>, IClienteRepository
     {
-        public ClienteRepositoryBase(CursoAspNetCoreContext context) : base(context)
+        public ClienteRepository(CursoAspNetCoreContext context) : base()
         {
         }
     }

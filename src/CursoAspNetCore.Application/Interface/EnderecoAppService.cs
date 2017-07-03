@@ -19,29 +19,29 @@ namespace CursoAspNetCore.Application.Interface
             _enderecoService = enderecoService;
         }
 
-        public EnderecoViewModel Add(EnderecoViewModel obj)
+        public Endereco Add(Endereco obj)
         {
-            var area = Mapper.Map<EnderecoViewModel, Endereco>(obj);
+          
             BeginTransaction();
-            _enderecoService.Add(area);
+            _enderecoService.Add(obj);
             Commit();
             return obj;
         }
 
-        public EnderecoViewModel GetById(Guid id)
+        public Endereco GetById(Guid id)
         {
-            return Mapper.Map<Endereco, EnderecoViewModel>(_enderecoService.GetById(id));
+            return _enderecoService.GetById(id);
         }
 
-        public IEnumerable<EnderecoViewModel> GetAll()
+        public IEnumerable<Endereco> GetAll()
         {
-            return Mapper.Map<IEnumerable<Endereco>, IEnumerable<EnderecoViewModel>>(_enderecoService.GetAll());
+            return _enderecoService.GetAll();
         }
 
-        public EnderecoViewModel Update(EnderecoViewModel obj)
+        public Endereco Update(Endereco obj)
         {
             BeginTransaction();
-            _enderecoService.Update(Mapper.Map<EnderecoViewModel, Endereco>(obj));
+            _enderecoService.Update(obj);
             Commit();
             return obj;
         }

@@ -5,6 +5,7 @@ using CursoAspNetCore.Domain.Interfaces.Repository;
 using CursoAspNetCore.Domain.Services;
 using CursoAspNetCore.Application.ViewModel;
 using CursoAspNetCore.Domain.Entities;
+using AutoMapper;
 
 namespace CursoAspNetCore.Application.Interface
 {

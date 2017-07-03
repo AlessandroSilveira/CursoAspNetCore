@@ -6,9 +6,9 @@ using CursoAspNetMvc.Infra.Data.Context;
 
 namespace CursoAspNetMvc.Infra.Data.Repository
 {
-    public class EnderecoRepositoryBase : RepositoryBase<Endereco>, IClienteRepository
+    public class EnderecoRepository : RepositoryBase<Endereco>, IEnderecoRepository
     {
-        public EnderecoRepositoryBase(CursoAspNetCoreContext context) : base(context)
+        public EnderecoRepository(CursoAspNetCoreContext context) : base()
         {
         }
     }

@@ -1,4 +1,4 @@
-﻿using CursoAspNetCore.Domain.Entities;
+﻿/*using CursoAspNetCore.Domain.Entities;
 
 namespace CursoAspNetMvc.Infra.Data.EntityConfig
 {
@@ -51,4 +51,4 @@ namespace CursoAspNetMvc.Infra.Data.EntityConfig
             ToTable("Endereco");
         }
     }
-}
+}*/
