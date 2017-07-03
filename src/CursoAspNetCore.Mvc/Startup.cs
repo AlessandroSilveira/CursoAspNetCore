@@ -3,6 +3,7 @@ using CursoAspNetCore.Application.Interface.Repository;
 using CursoAspNetCore.Domain.Interfaces.Repository;
 using CursoAspNetCore.Domain.Services;
 using CursoAspNetCore.Infra.Data.Repository;
+using CursoAspNetMvc.Infra.Data.Context;
 using CursoAspNetMvc.Infra.Data.Repository;
 using CursoAspNetMvc.Infra.Data.UoW;
 using Microsoft.AspNetCore.Builder;
@@ -39,6 +40,9 @@ namespace CursoAspNetCore.Mvc
             services.AddSingleton(typeof(IRepository<>), typeof(RepositoryBase<>));
             services.AddSingleton<IClienteRepository, ClienteRepository>();
             services.AddSingleton<IEnderecoRepository, EnderecoRepository>();
+
+            //Context
+             services.AddSingleton<CursoAspNetCoreContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
