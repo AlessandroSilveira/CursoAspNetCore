@@ -21,13 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.1 - Data", "5.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.2 - CrossCutting", "5.2 - CrossCutting", "{CE6C1673-F31D-47F9-9F55-1022121750CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetCore.Domain", "CursoAspNetCore.Domain\CursoAspNetCore.Domain.csproj", "{3A0B1D5B-D4DD-40C5-8A43-037BFBDBAA69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetCore.Domain", "src\CursoAspNetCore.Domain\CursoAspNetCore.Domain.csproj", "{3A0B1D5B-D4DD-40C5-8A43-037BFBDBAA69}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetMvc.Infra.Data", "CursoAspNetMvc.Infra.Data\CursoAspNetMvc.Infra.Data.csproj", "{B8A42681-230B-4905-BB4A-39EAA772F8EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetMvc.Infra.Data", "src\CursoAspNetMvc.Infra.Data\CursoAspNetMvc.Infra.Data.csproj", "{B8A42681-230B-4905-BB4A-39EAA772F8EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetCore.Application", "CursoAspNetCore.Application\CursoAspNetCore.Application.csproj", "{FF913F5E-0CE7-4900-B679-766287DDF268}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetCore.Application", "src\CursoAspNetCore.Application\CursoAspNetCore.Application.csproj", "{FF913F5E-0CE7-4900-B679-766287DDF268}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetCore.Mvc", "CursoAspNetCore.Mvc\CursoAspNetCore.Mvc.csproj", "{5EA7D6BB-09EF-4BEE-8101-AA6D63AD9A20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoAspNetCore.Mvc", "src\CursoAspNetCore.Mvc\CursoAspNetCore.Mvc.csproj", "{5EA7D6BB-09EF-4BEE-8101-AA6D63AD9A20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
