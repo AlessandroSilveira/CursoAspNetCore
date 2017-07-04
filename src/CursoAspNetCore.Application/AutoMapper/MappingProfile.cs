@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CursoAspNetCore.Application.ViewModel;
+using CursoAspNetCore.Domain.Entities;
 
 namespace CursoAspNetCore.Application.AutoMapper
 {
@@ -6,8 +8,10 @@ namespace CursoAspNetCore.Application.AutoMapper
 	{
 		public MappingProfile()
 		{
-			CreateMap<Worklog, AgileWorklog>();
-			CreateMap<AgileWorklog, Worklog>();
+			CreateMap<Cliente, ClienteViewModel>();
+			CreateMap<Endereco, EnderecoViewModel>();
+			CreateMap<ClienteViewModel, Cliente>();
+			CreateMap<EnderecoViewModel,Endereco>();
 		}
 	}
 }
