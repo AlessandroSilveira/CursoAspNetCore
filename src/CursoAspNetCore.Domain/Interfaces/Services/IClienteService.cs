@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CursoAspNetCore.Domain.Services
+namespace CursoAspNetCore.Domain.Interfaces.Services
 {
 	public interface IClienteService : IDisposable
 	{

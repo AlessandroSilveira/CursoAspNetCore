@@ -1,40 +1,36 @@
-﻿using CursoAspNetCore.Domain.Entities;
+﻿using System.IO;
+using CursoAspNetCore.Domain.Models;
+using CursoAspNetCore.Infra.Data.Mappings;
+using CursoAspNetCore.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System.IO;
+using CursoAspNetCore.Domain.Entities;
 
-namespace CursoAspNetMvc.Infra.Data.Context
+namespace CursoAspNetCore.Infra.Data.Context
 {
-    public class CursoAspNetCoreContext : DbContext
-    {
+	public class EquinoxContext : DbContext
+	{
+		public DbSet<Cliente> Clientes { get; set; }
+		public DbSet<Endereco> Enderecos { get; set; }
 
-		public IConfigurationRoot Configurtion { get; set; }
-
-        public CursoAspNetCoreContext(DbContextOptions<CursoAspNetCoreContext> option)
-            : base(option)
-        {
-			Database.EnsureCreated();
-        }
-
-        public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<Endereco> Endereco { get; set; }
-
-		protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			if (!optionBuilder.IsConfigured)
-				optionBuilder.UseSqlServer(RetornaUrlConnection());
+			modelBuilder.AddConfiguration(new ClienteMap());
+			modelBuilder.AddConfiguration(new EnderecoMap());
+
+			base.OnModelCreating(modelBuilder);
 		}
 
-		public string RetornaUrlConnection()
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			var builder = new ConfigurationBuilder()
-				.SetBasePath(Directory.GetCurrentDirectory());
+			// get the configuration from the app settings
+			var config = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appsettings.json")
+				.Build();
 
-			Configurtion = builder.Build();
-
-			string connection = Configurtion.GetConnectionString("DefaultConnection");
-
-			return connection;
+			// define the database to use
+			optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 		}
-    }
+	}
 }

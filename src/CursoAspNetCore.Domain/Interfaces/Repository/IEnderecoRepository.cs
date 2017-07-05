@@ -3,6 +3,7 @@
 namespace CursoAspNetCore.Domain.Interfaces.Repository
 {
 	public interface IEnderecoRepository : IRepository<Endereco>
-    {
-    }
+	{
+		void Dispose();
+	}
 }

@@ -1,95 +1,63 @@
-﻿using CursoAspNetCore.Domain.Interfaces.Repository;
-using CursoAspNetMvc.Infra.Data.Context;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using CursoAspNetMvc.Infra.Data.Context;
+using CursoAspNetCore.Domain.Interfaces.Repository;
 
 namespace CursoAspNetCore.Infra.Data.Repository
 {
-	public class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class
+	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 	{
-		private DbContextOptionsBuilder<CursoAspNetCoreContext> _OptionsBuilder;
+		protected CursoAspNetCoreContext Db;
+		protected DbSet<TEntity> DbSet;
 
-		public RepositoryBase()
+		public Repository(CursoAspNetCoreContext context)
 		{
-			_OptionsBuilder = new DbContextOptionsBuilder<CursoAspNetCoreContext>();
+			Db = context;
+			DbSet = Db.Set<TEntity>();
 		}
 
-		public TEntity Add(TEntity obj)
+		public virtual void Add(TEntity obj)
 		{
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				banco.Add(obj);
-				SaveChanges();
-			}
-			return obj;
+			DbSet.Add(obj);
 		}
 
 		public virtual TEntity GetById(Guid id)
 		{
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				return banco.Set<TEntity>().Find(id);
-			}
+			return DbSet.Find(id);
 		}
 
 		public virtual IEnumerable<TEntity> GetAll()
 		{
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				return banco.Set<TEntity>().ToList();
-
-			}
+			return DbSet.ToList();
 		}
 
-		public virtual TEntity Update(TEntity obj)
+		public virtual void Update(TEntity obj)
 		{
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				banco.Update(obj);
-				SaveChanges();
-			}
-			return obj;
+			DbSet.Update(obj);
 		}
 
 		public virtual void Remove(Guid id)
 		{
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				var objeto = banco.Set<TEntity>().Find(id);
-				banco.Remove(objeto);
-				SaveChanges();
-			}
+			DbSet.Remove(DbSet.Find(id));
 		}
 
-		public IEnumerable<TEntity> Search(Expression<Func<TEntity, bool>> predicate)
+		public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
 		{
-			//return DbSet.Where(predicate);
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				return banco.Set<TEntity>().Where(predicate);
-			}
-		}
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		public void Dispose(bool Status)
-		{
-			if (!Status) return;
+			return DbSet.AsNoTracking().Where(predicate);
 		}
 
 		public int SaveChanges()
 		{
-			using (var banco = new CursoAspNetCoreContext(_OptionsBuilder.Options))
-			{
-				return banco.SaveChanges();
-			}
+			return Db.SaveChanges();
+		}
+
+		public void Dispose()
+		{
+			Db.Dispose();
+			GC.SuppressFinalize(this);
 		}
 	}
 }

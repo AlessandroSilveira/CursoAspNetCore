@@ -1,42 +1,26 @@
-﻿using System;
+﻿using CursoAspNetCore.Domain.Interfaces.Repository;
 using CursoAspNetMvc.Infra.Data.Context;
-using CursoAspNetCore.Domain.Interfaces.Repository;
 
-namespace CursoAspNetMvc.Infra.Data.UoW
+namespace CursoAspNetCore.Infra.Data.UoW
 {
-    public class UnitOfWork : IUnitOfWork
-    {
-        private readonly CursoAspNetCoreContext _db;
-        private bool _disposed;
+	public class UnitOfWork : IUnitOfWork
+	{
+		private readonly CursoAspNetCoreContext _context;
 
+		public UnitOfWork(CursoAspNetCoreContext context)
+		{
+			_context = context;
+		}
 
-        public UnitOfWork(CursoAspNetCoreContext db)
-        {
-            _db = db;
-        }
+		public CommandResponse Commit()
+		{
+			var rowsAffected = _context.SaveChanges();
+			return new CommandResponse(rowsAffected > 0);
+		}
 
-        public void BeginTransaction()
-        {
-            _disposed = false;
-        }
-
-        public void Commit()
-        {
-            _db.SaveChanges();
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-                if (disposing)
-                    _db.Dispose();
-            _disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-    }
+		public void Dispose()
+		{
+			_context.Dispose();
+		}
+	}
 }
